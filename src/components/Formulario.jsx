@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react"
 import { generarId } from "../helpers";
 
-const Formulario = ({ tareas, setTareas }) => {
+const Formulario = ({ tareas, setTareas, tareaEditar }) => {
   const [tarea, setTarea] = useState("");
+  const [editar, setEditar] = useState(false);
+
+  useEffect(() => {
+    if (Object.keys(tareaEditar).length > 0) {
+      setTarea(tareaEditar.nombre);
+      setEditar(true);
+    }
+  }, [tareaEditar]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,8 +22,15 @@ const Formulario = ({ tareas, setTareas }) => {
       id: generarId()
     };
 
-    // Agregar tarea
-    setTareas([...tareas, newTarea]);
+    if (editar) {
+      newTarea.id = tareaEditar.id;
+      const tareasActualizadas = tareas.map((tareaState) => tareaState.id === tareaEditar.id ? newTarea : tareaState);
+      setTareas(tareasActualizadas);
+      setEditar(false);
+    } else {
+      // Agregar tarea
+      setTareas([...tareas, newTarea]);
+    }
 
     setTarea("");
   };
@@ -36,7 +51,7 @@ const Formulario = ({ tareas, setTareas }) => {
 
       <input
         type="submit"
-        value="Añadir"
+        value={editar ? "Actualizar" : "Añadir"}
         className={`py-2 px-6 font-bold rounded-lg transition-all duration-300 cursor-pointer text-white bg-green-500 ${tarea ? " relative -right-0" : "absolute -right-48"}`} />
 
     </form>

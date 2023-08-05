@@ -5,6 +5,7 @@ import ListadoTareas from "./components/ListadoTareas";
 
 function App() {
   const [tareas, setTareas] = useState([]);
+  const [tareaEditar, setTareaEditar] = useState({});
 
   return (
     <div className="w-11/12 max-w-lg mt-10 mx-auto px5 py-10 shadow-lg rounded-md bg-white">
@@ -13,6 +14,7 @@ function App() {
       <Formulario
         tareas={tareas}
         setTareas={setTareas}
+        tareaEditar={tareaEditar}
       />
 
       <h2 className="my-5 text-center font-extrabold text-3xl text-gray-500">
@@ -21,6 +23,7 @@ function App() {
 
       <ListadoTareas
         tareas={tareas}
+        setTareaEditar={setTareaEditar}
       />
     </div>
   )
