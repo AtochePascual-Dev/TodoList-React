@@ -8,7 +8,7 @@ function App() {
   const [tareaEditar, setTareaEditar] = useState({});
 
   return (
-    <div className="w-11/12 max-w-lg mt-10 mx-auto px5 py-10 shadow-lg rounded-md bg-white">
+    <div className="w-11/12 max-w-lg mt-10 mx-auto px5 py-10 shadow-lg rounded-md bg-white overflow-hidden">
       <Haeder />
 
       <Formulario
@@ -23,6 +23,7 @@ function App() {
 
       <ListadoTareas
         tareas={tareas}
+        setTareas={setTareas}
         setTareaEditar={setTareaEditar}
       />
     </div>
