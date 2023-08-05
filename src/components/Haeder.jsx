@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Haeder = () => {
   return (
     <header className='mb-10'>
