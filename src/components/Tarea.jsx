@@ -3,7 +3,7 @@ import IconoEdit from '../img/edit.svg';
 import IconoDelete from '../img/delete.svg';
 import { useState } from 'react';
 
-const Tarea = ({ tarea, tareas, setTareas, setTareaEditar, }) => {
+const Tarea = ({ tarea, tareas, setTareas, setTareaEditar, tareasCompletas, setTareasCompletas }) => {
   const [animar, setAnimar] = useState(false)
 
   const { nombre, id } = tarea;
@@ -12,6 +12,20 @@ const Tarea = ({ tarea, tareas, setTareas, setTareaEditar, }) => {
     setAnimar(true);
 
     setTimeout(() => {
+      const tareasActualizadas = tareas.filter((tareaState) => tareaState.id !== id);
+      setTareas(tareasActualizadas);
+
+    }, 300);
+  };
+
+
+  const handleClickCompletarTarea = () => {
+    setAnimar(true);
+
+    setTimeout(() => {
+      const tareaCompletada = tareas.find((tareaState) => tareaState.id === id);
+      setTareasCompletas([...tareasCompletas, tareaCompletada]);
+
       const tareasActualizadas = tareas.filter((tareaState) => tareaState.id !== id);
       setTareas(tareasActualizadas);
 
@@ -28,6 +42,7 @@ const Tarea = ({ tarea, tareas, setTareas, setTareaEditar, }) => {
           src={IconoCheck}
           alt="icono de completar"
           className='cursor-pointer'
+          onClick={handleClickCompletarTarea}
         />
         <img
           src={IconoEdit}

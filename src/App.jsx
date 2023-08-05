@@ -5,6 +5,7 @@ import ListadoTareas from "./components/ListadoTareas";
 
 function App() {
   const [tareas, setTareas] = useState([]);
+  const [tareasCompletas, setTareasCompletas] = useState([]);
   const [tareaEditar, setTareaEditar] = useState({});
 
   return (
@@ -25,6 +26,8 @@ function App() {
         tareas={tareas}
         setTareas={setTareas}
         setTareaEditar={setTareaEditar}
+        tareasCompletas={tareasCompletas}
+        setTareasCompletas={setTareasCompletas}
       />
     </div>
   )

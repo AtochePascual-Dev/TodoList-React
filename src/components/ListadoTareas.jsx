@@ -1,6 +1,6 @@
 import Tarea from "./Tarea"
 
-const ListadoTareas = ({ tareas, setTareas, setTareaEditar }) => {
+const ListadoTareas = ({ tareas, setTareas, setTareaEditar, tareasCompletas, setTareasCompletas }) => {
   return (
     <div>
       {tareas.map((tarea) =>
@@ -10,6 +10,8 @@ const ListadoTareas = ({ tareas, setTareas, setTareaEditar }) => {
           tareas={tareas}
           setTareas={setTareas}
           setTareaEditar={setTareaEditar}
+          tareasCompletas={tareasCompletas}
+          setTareasCompletas={setTareasCompletas}
         />
       )}
     </div>
