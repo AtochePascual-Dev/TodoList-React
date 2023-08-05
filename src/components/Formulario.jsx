@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { generarId } from "../helpers";
 
-const Formulario = ({ tareas, setTareas, tareaEditar }) => {
+const Formulario = ({ tareas, setTareas, tareaEditar, setTareaEditar }) => {
   const [tarea, setTarea] = useState("");
   const [editar, setEditar] = useState(false);
 
@@ -27,6 +27,7 @@ const Formulario = ({ tareas, setTareas, tareaEditar }) => {
       const tareasActualizadas = tareas.map((tareaState) => tareaState.id === tareaEditar.id ? newTarea : tareaState);
       setTareas(tareasActualizadas);
       setEditar(false);
+      setTareaEditar({})
     } else {
       // Agregar tarea
       setTareas([...tareas, newTarea]);

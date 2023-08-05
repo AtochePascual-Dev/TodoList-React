@@ -16,6 +16,7 @@ function App() {
         tareas={tareas}
         setTareas={setTareas}
         tareaEditar={tareaEditar}
+        setTareaEditar={setTareaEditar}
       />
 
       <h2 className="my-5 text-center font-extrabold text-3xl text-gray-500">
