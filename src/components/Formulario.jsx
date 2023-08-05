@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { generarId } from "../helpers";
 
 const Formulario = ({ tareas, setTareas }) => {
   const [tarea, setTarea] = useState("");
@@ -8,8 +9,9 @@ const Formulario = ({ tareas, setTareas }) => {
 
     // Crear tarea
     const newTarea = {
-      tarea,
-      realizado: false
+      nombre: tarea,
+      completdo: false,
+      id: generarId()
     };
 
     // Agregar tarea

@@ -7,7 +7,7 @@ const Tarea = ({ tarea }) => {
   return (
     <div className="w-11/12 mx-auto mb-5 flex justify-between items-center">
 
-      <p className='text-xl text-gray-800 font-semibold'>{tarea.tarea}</p>
+      <p className='text-xl text-gray-800 font-semibold'>{tarea.nombre}</p>
 
       <div className="flex gap-3">
         <img
