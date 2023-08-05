@@ -1,10 +1,29 @@
 import { useState, useEffect } from "react"
 
-const Formulario = () => {
+const Formulario = ({ tareas, setTareas }) => {
   const [tarea, setTarea] = useState("");
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Crear tarea
+    const newTarea = {
+      tarea,
+      realizado: false
+    };
+
+    // Agregar tarea
+    setTareas([...tareas, newTarea]);
+
+    setTarea("");
+  };
+
+
   return (
-    <form className="w-full px-2 flex gap-3 relative items-center overflow-hidden">
+    <form
+      onSubmit={handleSubmit}
+      className="w-full px-2 flex gap-3 relative items-center overflow-hidden">
+
       <input
         type="text"
         placeholder="Escribe tu tarea"
