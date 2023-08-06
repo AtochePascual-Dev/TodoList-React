@@ -18,7 +18,6 @@ const Formulario = ({ tareas, setTareas, tareaEditar, setTareaEditar }) => {
     // Crear tarea
     const newTarea = {
       nombre: tarea,
-      completdo: false,
       id: generarId()
     };
 
@@ -40,7 +39,7 @@ const Formulario = ({ tareas, setTareas, tareaEditar, setTareaEditar }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full px-2 flex gap-3 relative items-center overflow-hidden">
+      className="w-full flex gap-3 relative items-center overflow-hidden">
 
       <input
         type="text"

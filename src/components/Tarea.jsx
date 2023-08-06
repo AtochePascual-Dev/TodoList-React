@@ -3,7 +3,7 @@ import IconoEdit from '../img/edit.svg';
 import IconoDelete from '../img/delete.svg';
 import { useState } from 'react';
 
-const Tarea = ({ tarea, tareas, setTareas, setTareaEditar, tareasCompletas, setTareasCompletas }) => {
+const Tarea = ({ tarea, tareas, setTareas, setTareaEditar, tareasCompletas, setTareasCompletas, listarCompletados }) => {
   const [animar, setAnimar] = useState(false)
 
   const { nombre, id } = tarea;
@@ -12,8 +12,17 @@ const Tarea = ({ tarea, tareas, setTareas, setTareaEditar, tareasCompletas, setT
     setAnimar(true);
 
     setTimeout(() => {
-      const tareasActualizadas = tareas.filter((tareaState) => tareaState.id !== id);
-      setTareas(tareasActualizadas);
+      if (listarCompletados) {
+        const tareaCompletadaEliminada = tareasCompletas.find((tareaState) => tareaState.id === id);
+        setTareas([...tareas, tareaCompletadaEliminada]);
+
+        const tareasCompletasActualizadas = tareasCompletas.filter((tareaState) => tareaState.id !== id);
+        setTareasCompletas(tareasCompletasActualizadas);
+      } else {
+
+        const tareasActualizadas = tareas.filter((tareaState) => tareaState.id !== id);
+        setTareas(tareasActualizadas);
+      }
 
     }, 300);
   };
@@ -33,23 +42,36 @@ const Tarea = ({ tarea, tareas, setTareas, setTareaEditar, tareasCompletas, setT
   };
 
   return (
-    <div className={`w-11/12 mx-auto mb-5 flex justify-between items-center transition-all duration-500 ${animar ? "relative translate-x-72 " : ""} `}>
+    <div
+      className={` mx-auto mb-5 flex justify-between items-center transition-all duration-500 ${animar ? "relative translate-x-72 " : ""} `}
+    >
 
       <p className='text-xl text-gray-800 font-semibold'>{nombre}</p>
 
       <div className="flex gap-3">
-        <img
-          src={IconoCheck}
-          alt="icono de completar"
-          className='cursor-pointer'
-          onClick={handleClickCompletarTarea}
-        />
-        <img
-          src={IconoEdit}
-          alt="icono de editar"
-          className='cursor-pointer'
-          onClick={() => setTareaEditar(tarea)}
-        />
+
+        {
+          listarCompletados
+            ?
+            <>
+            </>
+            :
+            <>
+              <img
+                src={IconoCheck}
+                alt="icono de completar"
+                className='cursor-pointer'
+                onClick={handleClickCompletarTarea}
+              />
+              <img
+                src={IconoEdit}
+                alt="icono de editar"
+                className='cursor-pointer'
+                onClick={() => setTareaEditar(tarea)}
+              />
+            </>
+        }
+
         <img
           src={IconoDelete}
           alt="icono de eliminar"

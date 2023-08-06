@@ -2,14 +2,16 @@ import { useState } from "react"
 import Formulario from "./components/Formulario"
 import Haeder from "./components/Haeder"
 import ListadoTareas from "./components/ListadoTareas";
+import Select from "./components/Select";
 
 function App() {
   const [tareas, setTareas] = useState([]);
   const [tareasCompletas, setTareasCompletas] = useState([]);
   const [tareaEditar, setTareaEditar] = useState({});
+  const [listarCompletados, setlistarCompletados] = useState(false);
 
   return (
-    <div className="w-11/12 max-w-lg mt-10 mx-auto px5 py-10 shadow-lg rounded-md bg-white overflow-hidden">
+    <div className="w-11/12 max-w-lg mt-10 mx-auto px-3 py-10 flex flex-col items-center gap-6 shadow-lg rounded-md bg-white overflow-hidden">
       <Haeder />
 
       <Formulario
@@ -19,9 +21,22 @@ function App() {
         setTareaEditar={setTareaEditar}
       />
 
-      <h2 className="my-5 text-center font-extrabold text-3xl text-gray-500">
-        {tareas.length > 0 ? "Tus tareas" : "Aún no hay tareas"}
+
+      <Select
+        setlistarCompletados={setlistarCompletados}
+      />
+
+      <h2 className="text-center font-extrabold text-3xl text-gray-500">
+        {
+          listarCompletados
+            ?
+            tareasCompletas.length > 0 ? "Completadas" : "Aún no has completado tareas"
+            :
+            tareas.length > 0 ? "Tus tareas" : "Aún no hay tareas"
+        }
       </h2>
+
+
 
       <ListadoTareas
         tareas={tareas}
@@ -29,6 +44,7 @@ function App() {
         setTareaEditar={setTareaEditar}
         tareasCompletas={tareasCompletas}
         setTareasCompletas={setTareasCompletas}
+        listarCompletados={listarCompletados}
       />
     </div>
   )
